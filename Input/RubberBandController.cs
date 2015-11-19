@@ -10,6 +10,7 @@ namespace SMF
 	{
 		private SMF.TouchHandler touchHandler;
 		private Vector3 currentSmoothVelocity;
+		private Touch[] activeTouches;
 		
 		public float maxSmoothSpeed = 3.0f;
 		public float smoothTime = 0.15f;
@@ -17,6 +18,11 @@ namespace SMF
 		// Indicates whether the controller should orient the object towards the target position or if the
 		// rotation should be untouched
 		public bool orientTowardsTarget = false;
+
+		public int numActiveTouches
+		{
+			get { return activeTouches == null ? 0 : activeTouches.Length; }
+		}
 
 		// Use this for initialization
 		void Start()
@@ -27,11 +33,11 @@ namespace SMF
 		// Update is called once per frame
 		void Update()
 		{
-			Touch[] touches = touchHandler.GetTouches();
+			activeTouches = touchHandler.GetTouches();
 
-			if (touches.Length > 0)
+			if (activeTouches.Length > 0)
 			{
-				Touch touch = touches[0];
+				Touch touch = activeTouches[0];
 				Vector3 screenPos = new Vector3(touch.position.x, touch.position.y, 0.0f);
 				Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
 				worldPos.z = transform.position.z;
