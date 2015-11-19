@@ -12,7 +12,7 @@ namespace SMF
 		private Renderer renderComponent;
 
 
-		void Start()
+		public void Start()
 		{
 			renderComponent = GetComponent<Renderer>();
 			Debug.Assert(renderComponent);
@@ -22,7 +22,7 @@ namespace SMF
 				//renderComponent.sprite.rect
 		}
 
-		void Update()
+		public void Update()
 		{
 			Vector2 offset = panSpeed * Time.deltaTime;
 			currentOffset += offset;
