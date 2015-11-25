@@ -24,6 +24,11 @@ namespace SMF
 			get { return activeTouches == null ? 0 : activeTouches.Length; }
 		}
 
+		public Vector3 currentVelocity
+		{
+			get { return currentSmoothVelocity; }
+		}
+
 		// Use this for initialization
 		void Start()
 		{
