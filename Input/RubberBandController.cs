@@ -14,6 +14,7 @@ namespace SMF
 		
 		public float maxSmoothSpeed = 3.0f;
 		public float smoothTime = 0.15f;
+		public Vector2 touchOffset = Vector2.zero;
 
 		// Indicates whether the controller should orient the object towards the target position or if the
 		// rotation should be untouched
@@ -43,7 +44,7 @@ namespace SMF
 			if (activeTouches.Length > 0)
 			{
 				Touch touch = activeTouches[0];
-				Vector3 screenPos = new Vector3(touch.position.x, touch.position.y, 0.0f);
+				Vector3 screenPos = new Vector3(touch.position.x + touchOffset.x, touch.position.y + touchOffset.y, 0.0f);
 				Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
 				worldPos.z = transform.position.z;
 				
